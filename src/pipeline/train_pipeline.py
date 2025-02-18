@@ -32,9 +32,13 @@ class TrainPipeline:
             self.preprocessor = ColumnTransformer(
                 transformers=[
                     ("num", StandardScaler(), numerical_features),
-                    ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features),
+                    ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), categorical_features),
                 ]
             )
+
+            # Debugging: Check transformed feature shape
+            X_train_transformed = self.preprocessor.fit_transform(X_train)
+            print(f"Shape after transformation (Train): {X_train_transformed.shape}")
 
             # Define model pipeline
             pipeline = Pipeline([

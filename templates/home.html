@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Indicator</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: white;
+            text-align: center;
+        }
+        .login {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #00ffcc;
+        }
+        h1, h2 {
+            color: #00ffcc;
+        }
+        .form-label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
+            background: #2a2a2a;
+            color: white;
+        }
+        .btn {
+            background: #00ffcc;
+            color: black;
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #008f99;
+        }
+        select, input {
+            font-size: 14px;
+        }
+        .icon {
+            margin-right: 5px;
+            color: #00ffcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1><i class="fas fa-chart-line icon"></i> Student Exam Performance Indicator</h1>
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <legend><h2>Student Exam Performance Prediction</h2></legend>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-user icon"></i> Gender</label>
+                <select class="form-control" name="gender" required>
+                    <option selected disabled value="">Select your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-users icon"></i> Race or Ethnicity</label>
+                <select class="form-control" name="ethnicity" required>
+                    <option selected disabled value="">Select Ethnicity</option>
+                    <option value="group A">Group A</option>
+                    <option value="group B">Group B</option>
+                    <option value="group C">Group C</option>
+                    <option value="group D">Group D</option>
+                    <option value="group E">Group E</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-graduation-cap icon"></i> Parental Level of Education</label>
+                <select class="form-control" name="parental_level_of_education" required>
+                    <option selected disabled value="">Select Parent Education</option>
+                    <option value="associate's degree">Associate's Degree</option>
+                    <option value="bachelor's degree">Bachelor's Degree</option>
+                    <option value="high school">High School</option>
+                    <option value="master's degree">Master's Degree</option>
+                    <option value="some college">Some College</option>
+                    <option value="some high school">Some High School</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-utensils icon"></i> Lunch Type</label>
+                <select class="form-control" name="lunch" required>
+                    <option selected disabled value="">Select Lunch Type</option>
+                    <option value="free/reduced">Free/Reduced</option>
+                    <option value="standard">Standard</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-book-open icon"></i> Test Preparation Course</label>
+                <select class="form-control" name="test_preparation_course" required>
+                    <option selected disabled value="">Select Test Course</option>
+                    <option value="none">None</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-pencil-alt icon"></i> Writing Score (0-100)</label>
+                <input class="form-control" type="number" name="writing_score" min="0" max="100" placeholder="Enter Writing Score" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-book icon"></i> Reading Score (0-100)</label>
+                <input class="form-control" type="number" name="reading_score" min="0" max="100" placeholder="Enter Reading Score" required>
+            </div>
+            <div class="mb-3">
+                <input class="btn" type="submit" value="Predict your Maths Score">
+            </div>
+        </form>
+        <h2>Prediction: {{ results }}</h2>
+    </div>
+</body>
+</html>

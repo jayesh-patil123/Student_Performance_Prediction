@@ -65,7 +65,7 @@ class TrainPipeline:
 if __name__ == "__main__":
     try:
         # Load dataset (fixed path issue)
-        data = pd.read_csv(r"notebook/data/stud.csv")  # Use raw string or forward slash
+        data = pd.read_csv(r"artifacts/train.csv")  # Use raw string or forward slash
 
         # Initialize and train
         train_pipeline = TrainPipeline()

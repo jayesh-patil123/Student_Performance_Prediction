@@ -1,9 +1,7 @@
 import sys
 import pandas as pd
-
 from src.exception import CustomException
 from src.utils import load_object
-
 
 class PredictPipeline:
     def __init__(self) -> None:
@@ -17,22 +15,33 @@ class PredictPipeline:
             model = load_object(file_path=model_path)
             preprocessor = load_object(file_path=preprocessor_path)
 
+            # Expected feature names based on the trained preprocessor
+            expected_features = [
+                "gender", "race_ethnicity", "parental_level_of_education", 
+                "lunch", "test_preparation_course", "reading_score", "writing_score"
+            ]
+
+            # Debugging: Print input feature names
+            print("Received feature columns:", list(features.columns))
+            print("Expected feature columns:", expected_features)
+
+            # Ensure only the required features are passed to the preprocessor
+            features = features[expected_features]
+
             # Debugging: Check feature shape before transformation
-            print(f"Input feature shape: {features.shape}")
+            print(f"Feature shape before transformation: {features.shape}")
 
             # Apply transformation
             data_scaled = preprocessor.transform(features)
 
             # Debugging: Check transformed feature shape
             print(f"Transformed feature shape: {data_scaled.shape}")
-            print(f"Expected shape: {preprocessor.transform(features[:1]).shape}")
 
             preds = model.predict(data_scaled)
             
             return preds
         except Exception as e:
             raise CustomException(e, sys)
-
 
 class CustomData:
     '''
@@ -67,7 +76,12 @@ class CustomData:
                 "writing_score": [self.writing_score],
             }
 
-            return pd.DataFrame(custom_data_input_dict)
+            df = pd.DataFrame(custom_data_input_dict)
+
+            # Debugging: Print DataFrame columns
+            print("Custom DataFrame columns:", list(df.columns))
+
+            return df
 
         except Exception as e:
             raise CustomException(e, sys)

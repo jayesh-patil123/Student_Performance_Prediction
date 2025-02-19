@@ -41,15 +41,16 @@
         h1 {
             font-size: 3rem;
             font-weight: bold;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            background: linear-gradient(90deg, #00c6ff, #0072ff); /* Define background */
             -webkit-background-clip: text;
-            color: transparent;
-            opacity: 0;
-        }
+            -webkit-text-fill-color: transparent; /* Ensures text is visible */
+}
     </style>
 </head>
 <body>
-    <h1 class="fade-in">Welcome to the Future of Exam Prediction</h1>
+    <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+        Welcome to the Future of Exam Prediction
+    </h1>
     <button class="btn-custom mt-6" onclick="window.location.href='/predictdata'">Get Started</button>
     
     <script>

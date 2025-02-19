@@ -4,45 +4,26 @@ import pandas as pd
 from src.exception import CustomException
 from src.utils import load_object
 
+
 class PredictPipeline:
-    def __init__(self):
+    def __init__(self) -> None:
         pass
-
-    def predict(self, features):
+    
+    def predict(self,features):
         try:
-            model_path = 'artifacts\model.pkl'
-            preprocessor_path = 'artifacts\preprocessor.pkl'
+            model_path='artifacts\model.pkl'
+            preprocessor_path='artifacts\preprocessor.pkl'
+            model=load_object(file_path=model_path)
+            preprocessor=load_object(file_path=preprocessor_path)
+            data_scaled=preprocessor.transform(features)
+            preds=model.predict(data_scaled)
             
-            model = load_object(file_path=model_path)
-            preprocessor = load_object(file_path=preprocessor_path)
-
-            # Define expected columns based on training
-            expected_columns = ['gender', 'race_ethnicity', 'parental_level_of_education', 
-                                'lunch', 'test_preparation_course', 
-                                'math_score', 'reading_score', 'writing_score']
-
-            # Debugging: Print input features shape before filtering
-            print("Features Shape Before Filtering:", features.shape)
-            print("Feature Columns Before Filtering:", features.columns.tolist())
-
-            # Ensure only expected columns are used
-            features = features[expected_columns]
-
-            # Debugging: Print input features shape after filtering
-            print("Features Shape After Filtering:", features.shape)
-
-            # Transform input data
-            data_scaled = preprocessor.transform(features)
-
-            # Debugging: Print shape after preprocessing
-            print("Features Shape After Preprocessing:", data_scaled.shape)
-
-            # Make predictions
-            preds = model.predict(data_scaled)
-
             return preds
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e,sys)
+        
+        
+    
 
 class CustomData:
     '''

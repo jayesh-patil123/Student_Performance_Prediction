@@ -7,7 +7,4 @@ catboost
 xgboost
 dill
 Flask
-lightgbm
-mlflow
-
 -e .

@@ -42,7 +42,7 @@ class DataTransformation:
                 ]
             )
             
-            cat_pipeline=Pipeline(
+            cat_pipline=Pipeline(
                 steps=[
                     ('imputer',SimpleImputer(strategy='most_frequent')),
                     ('one_hot_encoder',OneHotEncoder()),
@@ -50,13 +50,15 @@ class DataTransformation:
                 ]
             )
             
+            # logging.info('Numerical columns standard scaling completed')
+            # logging.info('Categorical columns encoding completed')
             logging.info(f'Categorical columns: {categorical_columns}')
             logging.info(f'Numerical columns: {numerical_columns}')
             
             preprocessor=ColumnTransformer(
                 [
                     ('num_pipeline',num_pipeline,numerical_columns),
-                    ('cat_pipeline',cat_pipeline,categorical_columns)
+                    ('cat_pipeline',cat_pipline,categorical_columns)
                 ]
             )
             
@@ -89,8 +91,6 @@ class DataTransformation:
             
             input_feature_train_arr=preprocessor_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessor_obj.transform(input_feature_test_df)
-            
-            logging.info(f"Feature names after transformation: {preprocessor_obj.get_feature_names_out()}")
             
             train_arr = np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)

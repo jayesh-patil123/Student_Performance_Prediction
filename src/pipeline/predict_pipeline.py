@@ -1,35 +1,29 @@
 import sys
 import pandas as pd
+
 from src.exception import CustomException
 from src.utils import load_object
+
 
 class PredictPipeline:
     def __init__(self) -> None:
         pass
     
-    def predict(self, features):
+    def predict(self,features):
         try:
-            model_path = 'artifacts/model.pkl'
-            preprocessor_path = 'artifacts/preprocessor.pkl'
-
-            model = load_object(file_path=model_path)
-            preprocessor = load_object(file_path=preprocessor_path)
-
-            # Debugging Step: Check Input Shape
-            print(f"Feature names in Preprocessor: {preprocessor.get_feature_names_out()}")
-            print(f"Input feature shape before transformation: {features.shape}")
-
-            # Apply transformation
-            data_scaled = preprocessor.transform(features)
-
-            # Debugging: Check transformed feature shape
-            print(f"Transformed feature shape: {data_scaled.shape}")
-
-            preds = model.predict(data_scaled)
-
+            model_path='artifacts\model.pkl'
+            preprocessor_path='artifacts\preprocessor.pkl'
+            model=load_object(file_path=model_path)
+            preprocessor=load_object(file_path=preprocessor_path)
+            data_scaled=preprocessor.transform(features)
+            preds=model.predict(data_scaled)
+            
             return preds
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e,sys)
+        
+        
+    
 
 class CustomData:
     '''

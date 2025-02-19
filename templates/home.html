@@ -20,7 +20,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
             border-radius: 12px;
             padding: 20px;
-            max-width: 500px;
+            max-width: 600px;
             margin: auto;
             transition: transform 0.3s ease-in-out;
         }
@@ -39,11 +39,18 @@
             transform: scale(1.1);
             background: linear-gradient(90deg, #0072ff, #00c6ff);
         }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
 <body>
     <div class="glass mt-20 p-8">
-        <h1 class="text-3xl font-bold text-cyan-400"><i class="fas fa-chart-line"></i> Student Exam Performance Indicator</h1>
+        <h1><i class="fas fa-chart-line"></i> Student Exam Performance Indicator</h1>
         <form action="{{ url_for('predict_datapoint') }}" method="post" class="space-y-4 mt-6">
             <label class="block text-left">Gender</label>
             <select class="w-full p-2 rounded bg-gray-800 text-white" name="gender" required>
@@ -60,6 +67,31 @@
                 <option value="group C">Group C</option>
                 <option value="group D">Group D</option>
                 <option value="group E">Group E</option>
+            </select>
+
+            <label class="block text-left">Parental Level of Education</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="parental_level_of_education" required>
+                <option disabled selected>Select Parent Education</option>
+                <option value="associate's degree">Associate's Degree</option>
+                <option value="bachelor's degree">Bachelor's Degree</option>
+                <option value="high school">High School</option>
+                <option value="master's degree">Master's Degree</option>
+                <option value="some college">Some College</option>
+                <option value="some high school">Some High School</option>
+            </select>
+            
+            <label class="block text-left">Lunch Type</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="lunch" required>
+                <option disabled selected>Select Lunch Type</option>
+                <option value="free/reduced">Free/Reduced</option>
+                <option value="standard">Standard</option>
+            </select>
+            
+            <label class="block text-left">Test Preparation Course</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="test_preparation_course" required>
+                <option disabled selected>Select Test Course</option>
+                <option value="none">None</option>
+                <option value="completed">Completed</option>
             </select>
             
             <label class="block text-left">Writing Score (0-100)</label>

@@ -2,7 +2,7 @@ import os
 import sys
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor  # Regression model
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -11,18 +11,22 @@ from src.exception import CustomException
 from src.utils import save_object
 
 class TrainPipeline:
-    def __init__(self) -> None:
+    def __init__(self):
         self.model = None
         self.preprocessor = None
 
     def initiate_training(self, data: pd.DataFrame):
         try:
+            # Check if the target column exists
+            if "math_score" not in data.columns:
+                raise ValueError("Dataset must contain 'math_score' as the target variable.")
+
             # Define categorical and numerical columns
             categorical_features = ["gender", "race_ethnicity", "parental_level_of_education", "lunch", "test_preparation_course"]
             numerical_features = ["reading_score", "writing_score"]
 
             # Split features and target variable
-            X = data.drop("math_score", axis=1)
+            X = data.drop(columns=["math_score"])
             y = data["math_score"]
 
             # Train-test split
@@ -32,7 +36,7 @@ class TrainPipeline:
             self.preprocessor = ColumnTransformer(
                 transformers=[
                     ("num", StandardScaler(), numerical_features),
-                    ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), categorical_features),
+                    ("cat", OneHotEncoder(handle_unknown="ignore", sparse=False), categorical_features),
                 ]
             )
 
@@ -54,8 +58,15 @@ class TrainPipeline:
             error = mean_absolute_error(y_test, y_pred)
             print(f"Mean Absolute Error: {error:.2f}")
 
+            # Ensure artifacts directory exists
+            os.makedirs("artifacts", exist_ok=True)
+
             # Save model and preprocessor
             save_object("artifacts/model.pkl", pipeline)
+
+            # Debugging: Check data shapes
+            print("Train data shape:", X_train.shape)
+            print("Test data shape:", X_test.shape)
 
             return error
 
@@ -64,8 +75,15 @@ class TrainPipeline:
 
 if __name__ == "__main__":
     try:
-        # Load dataset (fixed path issue)
-        data = pd.read_csv(r"artifacts/train.csv")  # Use raw string or forward slash
+        # Check which dataset to use
+        dataset_path = "artifacts/train.csv"  # Adjust if needed
+
+        # Load dataset
+        if not os.path.exists(dataset_path):
+            raise FileNotFoundError(f"Dataset not found at {dataset_path}")
+
+        data = pd.read_csv(dataset_path)
+        print(f"Loaded dataset with shape: {data.shape}")
 
         # Initialize and train
         train_pipeline = TrainPipeline()

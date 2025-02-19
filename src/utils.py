@@ -1,5 +1,6 @@
 # some general code that we will use across the entire project(like reading the dataset)
 import os,sys
+import pickle
 
 import dill
 import numpy as np
@@ -12,14 +13,20 @@ from src.exception import CustomException
 
 def save_object(file_path, obj):
     try:
-        dir_path=os.path.dirname(file_path)
+        # Extract directory and create if not exists
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
         
-        os.makedirs(dir_path,exist_ok=True)
-        
-        with open(file_path,'wb') as file_obj:
-            dill.dump(obj, file_obj)
+        # Ensure the file name is valid
+        if not file_path or file_path.isspace():
+            raise ValueError("Invalid file path provided for saving object.")
+
+        # Save the object
+        with open(file_path, 'wb') as file_obj:
+            pickle.dump(obj, file_obj)
+
     except Exception as e:
-        raise CustomException(e,sys)
+        raise CustomException(e, sys)
     
 def evaluate_models(X_train,y_train,X_test,y_test,models,params,cv=3,n_jobs=3,verbose=1,refit=False):
     try:

@@ -6,6 +6,13 @@ from sklearn.preprocessing import StandardScaler
 
 from src.pipeline.predict_pipeline import CustomData,PredictPipeline
 
+import logging
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
+
+from waitress import serve
+from app import app  # Ensure you import your Flask app correctly
+
+
 application=Flask(__name__)
 
 app=application
@@ -41,4 +48,4 @@ def predict_datapoint():
         return render_template('home.html',results=results[0])
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0',debug=True)
+    serve(app, host="127.0.0.1", port=8000)

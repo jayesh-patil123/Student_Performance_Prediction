@@ -86,13 +86,16 @@ Supports Training New Models with Additional Data
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/jayesh-patil123/Student-Performance-Prediction.git
+git clone [https://github.com/jayesh-patil123/Student-Performance-Prediction.git](https://github.com/jayesh-patil123/Student_Performance_Prediction/tree/main)
+
 cd Student-Performance-Prediction
 
 2️⃣ Create a Virtual Environment & Install Dependencies
 
 python -m venv venv
+
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
 pip install -r requirements.txt
 
 🎯 Usage

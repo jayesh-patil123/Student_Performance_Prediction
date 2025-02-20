@@ -1,14 +1,19 @@
-## End To End Machine Learning Project
+🎓 Student Performance Prediction App
 
-## Project Structure
+
+
+🚀 Overview
+
+The Student Performance Prediction App is an end-to-end machine learning project designed to predict student performance based on various input features. The project follows a structured ML pipeline, from data ingestion to model deployment, using Python, Flask, CatBoost, and Scikit-Learn.
+
+📂 Project Structure
 
 Student-Performance-Prediction/
-
 │-- artifacts/               # Stores trained models, preprocessor, and other artifacts
 
 │-- catboost_info/           # Logs and metadata from CatBoost model training
 
-│-- data/
+│-- data/                    # Raw dataset and train-test split
 
 │   │-- data.csv             # Raw dataset
 
@@ -17,10 +22,6 @@ Student-Performance-Prediction/
 │   │-- test.csv             # Testing dataset
 
 │-- logs/                    # Log files for debugging and monitoring
-
-│-- miproject.egg-info/      # Package information
-
-│-- miruns/                  # Execution logs
 
 │-- notebook/                # Jupyter Notebooks for EDA and testing
 
@@ -52,41 +53,23 @@ Student-Performance-Prediction/
 
 │   │-- index.html
 
-│-- venv/                    # Virtual environment
-
-│-- .gitignore               # Files to ignore in Git
-
 │-- app.py                   # Main Flask application
-
-│-- application.py           # Alternative entry point
-
-│-- README.md                # Project documentation
 
 │-- requirements.txt         # Python dependencies
 
-│-- Setup.py                 # Setup script for packaging
+│-- README.md                # Project documentation
 
 │-- Training.log             # Logs for model training
 
-🚀 Features
+✨ Features
 
-End-to-end Machine Learning Pipeline (Data Ingestion ➝ Transformation ➝ Model Training ➝ Prediction)
-
-CatBoost Model for Performance Prediction
-
-Flask Web Interface for User Input & Predictions
-
-Logging and Exception Handling for Debugging
-
-Pretrained Model & Preprocessor Saved for Deployment
-
-Supports Training New Models with Additional Data
+✅ End-to-End ML Pipeline (Data Ingestion ➝ Transformation ➝ Model Training ➝ Prediction)✅ CatBoost Model for Performance Prediction✅ Flask Web Interface for User Input & Predictions✅ Logging and Exception Handling for Debugging✅ Pretrained Model & Preprocessor Saved for Deployment✅ Supports Training New Models with Additional Data
 
 🔧 Installation
 
 1️⃣ Clone the Repository
 
-git clone [https://github.com/jayesh-patil123/Student-Performance-Prediction.git](https://github.com/jayesh-patil123/Student_Performance_Prediction/tree/main)
+git clone [https://github.com/jayesh-patil123/Student-Performance-Prediction.git](https://github.com/jayesh-patil123/Student_Performance_Prediction)
 
 cd Student-Performance-Prediction
 
@@ -110,25 +93,25 @@ Go to http://127.0.0.1:5000/ to access the Student Performance Prediction App.
 
 📊 Model & Data Pipeline
 
-Data Ingestion (Data_ingestion.py):
+🔹 Data Ingestion (Data_ingestion.py):
 
 Reads data.csv
 
 Splits into train (train.csv) and test (test.csv)
 
-Data Transformation (Data_transformation.py):
+🔹 Data Transformation (Data_transformation.py):
 
 Handles missing values, feature scaling, and encoding
 
 Saves preprocessor (preprocessor.pki)
 
-Model Training (Model_trainer.py):
+🔹 Model Training (Model_trainer.py):
 
 Uses CatBoost for training
 
 Saves the best model (best_model.pk)
 
-Prediction (Predict_pipeline.py):
+🔹 Prediction (Predict_pipeline.py):
 
 Loads trained model & preprocessor
 
@@ -136,32 +119,37 @@ Takes user input and predicts student performance
 
 📌 Web Interface
 
-Homepage (home.html): Input student data for prediction
-
-Results Page (index.html): Displays predicted performance
+🖥 Homepage (home.html): Input student data for prediction📊 Results Page (index.html): Displays predicted performance
 
 🛠 Future Improvements
 
-Add support for multiple ML models (XGBoost, Random Forest, etc.)
+🚀 Add support for multiple ML models (XGBoost, Random Forest, etc.)
 
-Improve feature engineering for better accuracy
+🚀 Improve feature engineering for better accuracy
 
-Deploy as a Dockerized microservice
+🚀 Deploy as a Dockerized microservice
 
-Enhance the web UI with React or Streamlit
+🚀 Enhance the web UI with React or Streamlit
 
 🤝 Contributing
 
-Pull requests are welcome! If you want to contribute:
+Contributions are welcome! To contribute:
 
-Fork the repo
+1] Fork the repository
 
-Create a new branch (feature-branch)
+2] Create a new branch (feature-branch)
 
-Commit your changes
+3] Commit your changes
 
-Push and create a Pull Request
+4] Push and create a Pull Request
 
 📝 License
 
 This project is open-source under the MIT License.
+
+🚀 Developed by Jayesh Patil📧 
+
+Contact: 9096380075
+
+patiljayesh6908@gmail.com
+

@@ -134,7 +134,17 @@ Contributions are welcome! To contribute:
 ## 🖼 Screenshots
 
 ### 📌 Homepage  
-![Homepage Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/Home%20page.png)
+![Homepage 1 Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/Home%20page.png)
+
+![Homepage 2 Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/Home%20page%20(2).png)
+
+![Values Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/Values.png)
+
+![Prediction Scores Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/score.png)
+
+![Terminal Prediction Score Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/terminal%20predict%20score.png)
+
+![Terminal Training Score Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/Training%20score.png)
 
 
 

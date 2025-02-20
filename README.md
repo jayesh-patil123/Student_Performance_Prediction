@@ -1,12 +1,12 @@
-🎓 Student Performance Prediction App
+**🎓 Student Performance Prediction App**
 
 
 
-🚀 Overview
+**🚀 Overview**
 
 The Student Performance Prediction App is an end-to-end machine learning project designed to predict student performance based on various input features. The project follows a structured ML pipeline, from data ingestion to model deployment, using Python, Flask, CatBoost, and Scikit-Learn.
 
-📂 Project Structure
+**📂 Project Structure**
 
 Student-Performance-Prediction/
 │-- artifacts/               # Stores trained models, preprocessor, and other artifacts
@@ -61,11 +61,11 @@ Student-Performance-Prediction/
 
 │-- Training.log             # Logs for model training
 
-✨ Features
+**✨ Features**
 
 ✅ End-to-End ML Pipeline (Data Ingestion ➝ Transformation ➝ Model Training ➝ Prediction)✅ CatBoost Model for Performance Prediction✅ Flask Web Interface for User Input & Predictions✅ Logging and Exception Handling for Debugging✅ Pretrained Model & Preprocessor Saved for Deployment✅ Supports Training New Models with Additional Data
 
-🔧 Installation
+**🔧 Installation**
 
 1️⃣ Clone the Repository
 
@@ -81,7 +81,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 pip install -r requirements.txt
 
-🎯 Usage
+**🎯 Usage**
 
 1️⃣ Run the Flask App
 
@@ -91,7 +91,7 @@ python app.py
 
 Go to http://127.0.0.1:5000/ to access the Student Performance Prediction App.
 
-📊 Model & Data Pipeline
+**📊 Model & Data Pipeline**
 
 🔹 Data Ingestion (Data_ingestion.py):
 
@@ -117,11 +117,11 @@ Loads trained model & preprocessor
 
 Takes user input and predicts student performance
 
-📌 Web Interface
+**📌 Web Interface**
 
 🖥 Homepage (home.html): Input student data for prediction📊 Results Page (index.html): Displays predicted performance
 
-🛠 Future Improvements
+**🛠 Future Improvements**
 
 🚀 Add support for multiple ML models (XGBoost, Random Forest, etc.)
 
@@ -131,7 +131,7 @@ Takes user input and predicts student performance
 
 🚀 Enhance the web UI with React or Streamlit
 
-🤝 Contributing
+**🤝 Contributing**
 
 Contributions are welcome! To contribute:
 
@@ -143,11 +143,11 @@ Contributions are welcome! To contribute:
 
 4] Push and create a Pull Request
 
-📝 License
+**📝 License**
 
 This project is open-source under the MIT License.
 
-🚀 Developed by Jayesh Patil📧 
+**🚀 Developed by Jayesh Patil📧**
 
 Contact: 9096380075
 

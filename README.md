@@ -123,6 +123,7 @@ Go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to access the Student Per
 
 ## 🤝 Contributing
 Contributions are welcome! To contribute:
+
 1️⃣ Fork the repository  
 2️⃣ Create a new branch (`feature-branch`)  
 3️⃣ Commit your changes  

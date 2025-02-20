@@ -134,11 +134,8 @@ Contributions are welcome! To contribute:
 ## 🖼 Screenshots
 
 ### 📌 Homepage  
-![Homepage Screenshot](![Uploading image.png…]()
-)
+![Homepage Screenshot](https://github.com/jayesh-patil123/Student_Performance_Prediction/blob/main/Screenshots/Home%20page.png)
 
-### 📌 Prediction Result  
-![Prediction Screenshot](screenshots/result.png)
 
 
 ## 📝 License

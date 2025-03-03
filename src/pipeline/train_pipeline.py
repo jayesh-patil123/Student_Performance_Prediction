@@ -5,20 +5,20 @@ import pickle
 import logging
 import pandas as pd
 from datetime import datetime
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from sklearn.model_selection import GridSearchCV
 from src.exception import CustomException
 from src.utils import save_object
 
 # Configure logging
 logging.basicConfig(filename="logs/train_pipeline.log", level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 class TrainPipeline:
     def __init__(self, data_path):
@@ -27,10 +27,14 @@ class TrainPipeline:
         os.makedirs(self.artifact_dir, exist_ok=True)
 
     def load_data(self):
-        """Loads dataset from CSV file."""
+        """Loads dataset from CSV file and checks for missing values."""
         try:
             logging.info("Loading dataset...")
             df = pd.read_csv(self.data_path)
+
+            if df.isnull().sum().any():
+                raise ValueError("Dataset contains missing values. Please handle them before training.")
+
             logging.info(f"Dataset loaded successfully with shape: {df.shape}")
             return df
         except Exception as e:
@@ -43,7 +47,7 @@ class TrainPipeline:
             logging.info("Starting data preprocessing...")
 
             # Splitting features and target
-            X = df.drop(columns=['math_score'])  
+            X = df.drop(columns=['math_score'])
             y = df['math_score']
 
             # Defining categorical & numerical features
@@ -64,7 +68,7 @@ class TrainPipeline:
             X_test_scaled = preprocessor.transform(X_test)
 
             # Feature selection
-            selector = SelectKBest(score_func=f_regression, k='all')  # Change 'all' to a specific number if needed
+            selector = SelectKBest(score_func=f_regression, k="all")  # Change 'all' to a specific number if needed
             X_train_selected = selector.fit_transform(X_train_scaled, y_train)
             X_test_selected = selector.transform(X_test_scaled)
 
@@ -86,14 +90,14 @@ class TrainPipeline:
                 'min_samples_split': [2, 5, 10],
                 'min_samples_leaf': [1, 2, 4]
             }
-            
+
             rf = RandomForestRegressor(random_state=42)
             grid_search = GridSearchCV(rf, param_grid, cv=3, scoring='r2', n_jobs=-1)
             grid_search.fit(X_train, y_train)
 
             best_model = grid_search.best_estimator_
             logging.info(f"Best Model Parameters: {grid_search.best_params_}")
-            
+
             return best_model
         except Exception as e:
             logging.error(f"Error during model training: {e}")
@@ -107,7 +111,7 @@ class TrainPipeline:
 
             # Calculate performance metrics
             mae = mean_absolute_error(y_test, y_pred)
-            rmse = mean_squared_error(y_test, y_pred, squared=False)  # RMSE
+            rmse = mean_squared_error(y_test, y_pred, squared=False)  # RMSE (fixed)
             r2 = r2_score(y_test, y_pred)
 
             logging.info(f"Model Evaluation -> R²: {r2:.4f}, MAE: {mae:.4f}, RMSE: {rmse:.4f}")
@@ -122,22 +126,21 @@ class TrainPipeline:
             report_path = os.path.join(self.artifact_dir, "model_evaluation.json")
             with open(report_path, 'w') as f:
                 json.dump(report, f, indent=4)
-            logging.info("Model evaluation report saved successfully.")
+            logging.info(f"Model evaluation report saved at: {report_path}")
         except Exception as e:
             logging.error(f"Error saving evaluation report: {e}")
             raise CustomException(e, sys)
 
     def save_artifacts(self, model, preprocessor):
-        """Saves trained model and preprocessor with versioning."""
+        """Saves trained model and preprocessor."""
         try:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            model_filename = os.path.join(self.artifact_dir, f"model_{timestamp}.pkl")
-            preprocessor_filename = os.path.join(self.artifact_dir, f"preprocessor_{timestamp}.pkl")
+            model_path = os.path.join(self.artifact_dir, "model.pkl")
+            preprocessor_path = os.path.join(self.artifact_dir, "preprocessor.pkl")
 
-            save_object(model_filename, model)
-            save_object(preprocessor_filename, preprocessor)
+            save_object(model_path, model)
+            save_object(preprocessor_path, preprocessor)
 
-            logging.info(f"Artifacts saved: {model_filename}, {preprocessor_filename}")
+            logging.info(f"Artifacts saved successfully: {model_path}, {preprocessor_path}")
         except Exception as e:
             logging.error(f"Error saving artifacts: {e}")
             raise CustomException(e, sys)
@@ -166,7 +169,8 @@ class TrainPipeline:
             logging.critical(f"Pipeline failed: {e}")
             raise CustomException(e, sys)
 
+
 if __name__ == "__main__":
-    data_path = 'notebook/data/stud.csv'  # Update with actual dataset path
+    data_path = os.path.join("notebook", "data", "stud.csv")  # Fixed path issue
     pipeline = TrainPipeline(data_path)
     pipeline.run_pipeline()

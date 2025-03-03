@@ -84,7 +84,7 @@ pip install -r requirements.txt
 python app.py
 ```
 ### 2️⃣ Open in Browser
-Go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to access the Student Performance Prediction App.
+Go to [[http://127.0.0.1:5000/](http://127.0.0.1:5000/](https://student-performance-prediction-k8uw.onrender.com)) to access the Student Performance Prediction App.
 
 ---
 

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/om/OneDrive/Desktop/Jayesh%20Works/Student_Performance_Prediction/mlruns/849566381313006913/32f7ade0ffb84b518590f4a091ddd62a/artifacts
+end_time: 1739950104701
+entry_point_name: ''
+experiment_id: '849566381313006913'
+lifecycle_stage: active
+run_id: 32f7ade0ffb84b518590f4a091ddd62a
+run_name: LightGBM
+run_uuid: 32f7ade0ffb84b518590f4a091ddd62a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739950080819
+status: 3
+tags: []
+user_id: om

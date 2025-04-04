@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/om/OneDrive/Desktop/Jayesh%20Works/Student_Performance_Prediction/mlruns/849566381313006913/7ad32bfbdab54661b675e25be83cb8a9/artifacts
+end_time: 1739950067271
+entry_point_name: ''
+experiment_id: '849566381313006913'
+lifecycle_stage: active
+run_id: 7ad32bfbdab54661b675e25be83cb8a9
+run_name: RandomForest
+run_uuid: 7ad32bfbdab54661b675e25be83cb8a9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739950041449
+status: 3
+tags: []
+user_id: om

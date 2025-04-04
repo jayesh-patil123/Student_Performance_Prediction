@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .btn-custom {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 18px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+        }
+        .btn-custom:hover {
+            transform: scale(1.1);
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            box-shadow: 0 6px 20px rgba(0, 198, 255, 0.5);
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00c6ff, #0072ff); /* Define background */
+            background-clip: text;
+            -webkit-text-fill-color: transparent; /* Ensures text is visible */
+}
+    </style>
+</head>
+<body>
+    <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+        Welcome to the Future of Exam Prediction
+    </h1>
+    <button class="btn-custom mt-6" onclick="window.location.href='/predictdata'">Get Started</button>
+    
+    <script>
+        gsap.to(".fade-in", { opacity: 1, duration: 2, ease: "power3.out" });
+        gsap.from(".btn-custom", { y: 50, opacity: 0, duration: 1.5, delay: 0.5, ease: "power3.out" });
+    </script>
+</body>
+</html>

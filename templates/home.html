@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Indicator</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+        }
+        .glass {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+        .glass:hover {
+            transform: scale(1.05);
+        }
+        .btn-custom {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .btn-custom:hover {
+            transform: scale(1.1);
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass mt-20 p-8">
+        <h1><i class="fas fa-chart-line"></i> Student Exam Performance Indicator</h1>
+        <form action="{{ url_for('predict_datapoint') }}" method="post" class="space-y-4 mt-6">
+            <label class="block text-left">Gender</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="gender" required>
+                <option disabled selected>Select your Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            
+            <label class="block text-left">Race or Ethnicity</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="ethnicity" required>
+                <option disabled selected>Select Ethnicity</option>
+                <option value="group A">Group A</option>
+                <option value="group B">Group B</option>
+                <option value="group C">Group C</option>
+                <option value="group D">Group D</option>
+                <option value="group E">Group E</option>
+            </select>
+
+            <label class="block text-left">Parental Level of Education</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="parental_level_of_education" required>
+                <option disabled selected>Select Parent Education</option>
+                <option value="associate's degree">Associate's Degree</option>
+                <option value="bachelor's degree">Bachelor's Degree</option>
+                <option value="high school">High School</option>
+                <option value="master's degree">Master's Degree</option>
+                <option value="some college">Some College</option>
+                <option value="some high school">Some High School</option>
+            </select>
+            
+            <label class="block text-left">Lunch Type</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="lunch" required>
+                <option disabled selected>Select Lunch Type</option>
+                <option value="free/reduced">Free/Reduced</option>
+                <option value="standard">Standard</option>
+            </select>
+            
+            <label class="block text-left">Test Preparation Course</label>
+            <select class="w-full p-2 rounded bg-gray-800 text-white" name="test_preparation_course" required>
+                <option disabled selected>Select Test Course</option>
+                <option value="none">None</option>
+                <option value="completed">Completed</option>
+            </select>
+            
+            <label class="block text-left">Writing Score (0-100)</label>
+            <input type="number" class="w-full p-2 rounded bg-gray-800 text-white" name="writing_score" min="0" max="100" placeholder="Enter Writing Score" required>
+            
+            <label class="block text-left">Reading Score (0-100)</label>
+            <input type="number" class="w-full p-2 rounded bg-gray-800 text-white" name="reading_score" min="0" max="100" placeholder="Enter Reading Score" required>
+            
+            <button type="submit" class="btn-custom w-full">Predict your Maths Score</button>
+        </form>
+        <h2 class="mt-4 text-cyan-300">Prediction: {{ results }}</h2>
+    </div>
+    
+    <script>
+        gsap.from(".glass", { opacity: 0, y: 50, duration: 1.5, ease: "power3.out" });
+    </script>
+</body>
+</html>
